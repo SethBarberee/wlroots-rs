@@ -511,6 +511,9 @@ impl Compositor {
     pub fn run_with<F>(self, runner: F)
         where F: FnOnce(&Compositor)
     {
+        wlr_log!(WLR_DEBUG,
+                 "Running compositor on wayland display {}",
+                 self.socket_name);
         unsafe {
             self.set_lock(false);
             let compositor = UnsafeCell::new(self);
