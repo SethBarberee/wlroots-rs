@@ -446,9 +446,6 @@ impl Builder {
             panic!("Unable to open wayland socket");
         }
         let socket_name = CStr::from_ptr(socket).to_string_lossy().into_owned();
-        wlr_log!(WLR_DEBUG,
-                 "Running compositor on wayland display {}",
-                 socket_name);
         env::set_var("_WAYLAND_DISPLAY", socket_name.clone());
         let compositor = Compositor { data: Box::new(data),
                                       compositor_handler,
